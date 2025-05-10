@@ -1,19 +1,30 @@
 import { handleSendRuntimeMessage } from '../utils/message-events';
 
+interface TextToSpeechSettings {
+  volume: number;
+  rate: number;
+  pitch: number;
+  lang: string;
+  voice: string | null;
+}
+
+/**
+ * A class for managing text-to-speech operations using the Web Speech API.
+ */
 class TextToSpeech {
-  public settings: {
-    volume: number;
-    rate: number;
-    pitch: number;
-    lang: string;
-    voice: string | null;
-  };
+  public settings: TextToSpeechSettings;
   public synth: SpeechSynthesis;
   public utterance: SpeechSynthesisUtterance[];
   public voices: SpeechSynthesisVoice[];
   public isPaused: boolean;
   public isSpeaking: boolean;
 
+  /**
+   * Constructs a new TextToSpeech instance with default or provided settings.
+   *
+   * @param settings - Optional initial settings for speech synthesis.
+   * @throws Will throw an error if the Web Speech API is not supported.
+   */
   constructor(settings = {}) {
     this.settings = {
       volume: 1,
@@ -43,7 +54,13 @@ class TextToSpeech {
     }
   }
 
-  configure(options = {}) {
+  /**
+   * Updates the current settings with new options.
+   *
+   * @param {Partial<TextToSpeechSettings>} options - Partial settings to update the existing configuration.
+   * @returns The current instance for chaining.
+   */
+  configure(options: Partial<TextToSpeechSettings> = {}) {
     this.settings = {
       ...this.settings,
       ...options
@@ -51,6 +68,12 @@ class TextToSpeech {
     return this;
   }
 
+  /**
+   * Speaks the given text using the configured settings.
+   *
+   * @param text - The text to be spoken.
+   * @returns A promise that resolves once all utterances are spoken.
+   */
   async speak(text: string) {
     this.stop();
 
@@ -76,6 +99,13 @@ class TextToSpeech {
     return this;
   }
 
+  /**
+   * Splits the input text into separate `SpeechSynthesisUtterance` objects.
+   *
+   * @param text - The full text to split into utterance chunks.
+   * @returns An array of configured utterance objects.
+   * @private
+   */
   #splitTextIntoUtteranceChunks(text: string) {
     const chunks = text.split('. ');
 
@@ -94,6 +124,13 @@ class TextToSpeech {
     });
   }
 
+  /**
+   * Finds a matching voice based on its URI or name.
+   *
+   * @param voiceIdentifier - The voice name or URI to search for.
+   * @returns The matched `SpeechSynthesisVoice` or `null` if not found.
+   * @private
+   */
   #findVoice(voiceIdentifier: string | null) {
     if (!voiceIdentifier) return null;
     return (
@@ -103,10 +140,20 @@ class TextToSpeech {
     );
   }
 
+  /**
+   * Returns the list of available voices on the system.
+   *
+   * @returns An array of `SpeechSynthesisVoice` objects.
+   */
   getVoices() {
     return this.voices;
   }
 
+  /**
+   * Stops any ongoing speech and resets speaking state.
+   *
+   * @returns The current instance for chaining.
+   */
   stop() {
     if (this.synth) {
       this.synth.cancel();
@@ -122,6 +169,11 @@ class TextToSpeech {
     return this;
   }
 
+  /**
+   * Pauses the current speech.
+   *
+   * @returns The current instance for chaining.
+   */
   pause() {
     this.synth?.pause();
     this.isPaused = true;
@@ -134,6 +186,11 @@ class TextToSpeech {
     return this;
   }
 
+  /**
+   * Resumes paused speech.
+   *
+   * @returns The current instance for chaining.
+   */
   resume() {
     this.synth?.resume();
     this.isPaused = false;

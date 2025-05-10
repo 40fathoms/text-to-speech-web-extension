@@ -1,5 +1,12 @@
 type MessageInput = { type: string } & { [x: string]: string };
 
+/**
+ * Sets up a listener for incoming messages from `chrome.runtime`.
+ *
+ * @param callback - A function to handle incoming messages. Receives the message,
+ * the sender, and a function to send a response.
+ *
+ */
 const handleMessageListener = (
   callback: (
     message: MessageInput,
@@ -12,6 +19,12 @@ const handleMessageListener = (
   });
 };
 
+/**
+ * Sends a message to the background script or other parts of the extension using `chrome.runtime.sendMessage`.
+ *
+ * @param {MessageInput} message - The message object to send. Must include a `type` and optionally other fields.
+ *
+ */
 const handleSendRuntimeMessage = async (message: MessageInput) => {
   try {
     await chrome.runtime.sendMessage(message);
@@ -20,6 +33,13 @@ const handleSendRuntimeMessage = async (message: MessageInput) => {
   }
 };
 
+/**
+ * Sends a message to the active tab using `chrome.tabs.sendMessage`.
+ *
+ * @param {MessageInput} message - The message object to send. Must include a `type` and optionally other fields.
+ * @param callback - Optional function to handle the response from the content script.
+ *
+ */
 const handleSendTabsMessage = (
   message: MessageInput,
   callback: (response: unknown) => void = () => null
