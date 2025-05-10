@@ -1,4 +1,4 @@
-import { MainContent } from '../components';
+import { MainContent } from '../components/main';
 
 /**
  * Asynchronously generates and appends an HTML structure to the document body.
@@ -9,6 +9,8 @@ import { MainContent } from '../components';
  */
 const generateHtml = async () => {
   const main = document.querySelector<HTMLElement>('#root')!;
+
+  main.className = 'flex w-fit bg-stone-900 border-b-4 border-amber-300';
 
   const mainContent = MainContent();
 

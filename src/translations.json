@@ -1,8 +1,24 @@
 {
   "pt-BR": {
-    "title": "Conversor de Conteúdo para Texto Falado"
+    "title": "my TTS",
+    "settings-button": "Configurações",
+    "play-button": "Reproduzir",
+    "pause-button": "Pausar",
+    "stop-button": "Parar",
+    "instructions-element-intro": "Para usar o conversor de texto para fala, siga estas etapas:",
+    "instructions-element-step-1": "Selecione o texto que deseja converter e aperte <kbd>alt</kbd> + <kbd>a</kbd> ou navegue pela página apertando <kbd>tab</kbd> para ouvir o texto.",
+    "instructions-element-step-2": "Aperte <kbd>alt</kbd> + <kbd>p</kbd> para pausar a reprodução e <kbd>alt</kbd> + <kbd>r</kbd> para retomar a reprodução.",
+    "instructions-element-step-3": "Aperte <kbd>alt</kbd> + <kbd>s</kbd> para parar a reprodução."
   },
   "en-US": {
-    "title": "Text to Speech Content Parser"
+    "title": "my TTS",
+    "settings-button": "Settings",
+    "play-button": "Play",
+    "pause-button": "Pause",
+    "stop-button": "Stop",
+    "instructions-element-intro": "To use the text-to-speech converter, follow these steps:",
+    "instructions-element-step-1": "Select the text you want to convert and press <kbd>alt</kbd> + <kbd>a</kbd> or navigate through the page pressing <kbd>tab</kbd> to hear the text.",
+    "instructions-element-step-2": "Press <kbd>alt</kbd> + <kbd>p</kbd> to pause the playback and <kbd>alt</kbd> + <kbd>r</kbd> to resume the playback.",
+    "instructions-element-step-3": "Press <kbd>alt</kbd> + <kbd>s</kbd> to stop the playback."
   }
 }
