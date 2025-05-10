@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   build: {
@@ -22,5 +23,6 @@ export default defineConfig({
         inlineDynamicImports: true
       }
     }
-  }
+  },
+  plugins: [tailwindcss()]
 });

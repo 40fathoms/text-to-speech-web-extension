@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css",
-    "watch-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "build:vite": "vite build --config vite.main.config.ts && vite build --config vite.background.config.ts && vite build --config vite.content.config.ts",
-    "build": "tsc && npm run generate-css && npm run build:vite",
+    "build": "tsc && npm run build:vite",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.6",
+    "@tailwindcss/vite": "^4.1.6",
     "@types/chrome": "^0.0.320",
     "@types/node": "^22.15.15",
     "clsx": "^2.1.1",

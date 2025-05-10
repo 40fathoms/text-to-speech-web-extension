@@ -5,6 +5,7 @@ import {
   handleSendTabsMessage
 } from './utils/message-events';
 
+// generate initial html
 generateHtml();
 
 const playButton = document.querySelector<HTMLButtonElement>('#play-button')!;

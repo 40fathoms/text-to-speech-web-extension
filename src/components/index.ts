@@ -1,3 +1,3 @@
-import { Main } from './main';
+import { MainContent } from './main';
 
-export { Main };
+export { MainContent };
