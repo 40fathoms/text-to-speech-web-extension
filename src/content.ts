@@ -6,8 +6,6 @@ import { getFocusedElementText, getSelectedText } from './utils/text-selection';
 
 // trigger type - only selections should add outline
 
-// add utterance to an array on the class instance
-
 const textToSpeech = new TextToSpeech({
   volume: 0.8
   // lang: 'pt-BR'

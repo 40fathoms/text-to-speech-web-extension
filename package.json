@@ -6,19 +6,19 @@
   "scripts": {
     "dev": "vite",
     "generate-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css",
-    "watch-css": "npm run generate-css --watch",
+    "watch-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "build:vite": "vite build --config vite.main.config.ts && vite build --config vite.background.config.ts && vite build --config vite.content.config.ts",
     "build": "tsc && npm run generate-css && npm run build:vite",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@tailwindcss/cli": "^4.1.6",
     "@types/chrome": "^0.0.320",
     "@types/node": "^22.15.15",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.2.0",
+    "tailwindcss": "^4.1.6",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
-  },
-  "dependencies": {
-    "@tailwindcss/cli": "^4.1.5",
-    "tailwindcss": "^4.1.5"
   }
 }

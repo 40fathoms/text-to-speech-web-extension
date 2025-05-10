@@ -36,6 +36,8 @@ const handleSendTabsMessage = (
   }
 };
 
+export type { MessageInput };
+
 export {
   handleMessageListener,
   handleSendRuntimeMessage,

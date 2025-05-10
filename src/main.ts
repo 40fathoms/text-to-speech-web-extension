@@ -1,8 +1,11 @@
 import type TextToSpeech from './classes/text-to-speech';
+import { generateHtml } from './utils/generate-html';
 import {
   handleMessageListener,
   handleSendTabsMessage
 } from './utils/message-events';
+
+generateHtml();
 
 const playButton = document.querySelector<HTMLButtonElement>('#play-button')!;
 const pauseButton = document.querySelector<HTMLButtonElement>('#pause-button')!;
