@@ -1,38 +1,18 @@
-import { cn } from '../utils/cn';
-import { Header } from './header';
-import { TextToSpeechButtonsContainer } from './tts-buttons-container';
+import { PlayerContent } from './player-content';
+import { SettingsContent } from './settings-content';
 
-type ElementAttributes = Omit<
-  Partial<
-    HTMLElement &
-      HTMLButtonElement & {
-        [key: `data-${string}`]: string;
-        [key: `aria-${string}`]: string;
-      }
-  >,
-  'innerHTML'
->;
+const Main = () => {
+  const main = document.querySelector<HTMLElement>('#root')!;
 
-const MainContent = (props: ElementAttributes = {}) => {
-  const mainContent = document.createElement('div');
+  main.className = 'relative';
 
-  const mainContentClassName = cn([
-    'flex flex-col gap-7 items-center justify-center p-4 w-[250px] text-amber-300',
-    props?.className || ''
-  ]);
+  const playerContent = PlayerContent();
+  const settingsContent = SettingsContent();
 
-  Object.assign(mainContent, {
-    ...props,
-    className: mainContentClassName
-  });
+  main.appendChild(playerContent);
+  main.appendChild(settingsContent);
 
-  const headerElement = Header();
-  const textToSpeechContainerElement = TextToSpeechButtonsContainer();
-
-  mainContent.appendChild(headerElement);
-  mainContent.appendChild(textToSpeechContainerElement);
-
-  return mainContent;
+  return main;
 };
 
-export { MainContent };
+export { Main };

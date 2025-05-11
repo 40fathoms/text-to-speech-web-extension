@@ -1,52 +1,43 @@
-import { cn } from '../utils/cn';
+import { appendSvgToElement } from '../utils/append-svg';
+import { handleExpandSettings } from '../utils/expand-settings';
 import { i18n } from '../utils/i18n';
 import { Button } from './button';
+import { cogIcon } from './icons';
 
-type ElementAttributes = Omit<
-  Partial<
-    HTMLElement & {
-      [key: `data-${string}`]: string;
-      [key: `aria-${string}`]: string;
-    }
-  >,
-  'innerHTML'
->;
-
-type HeaderProps = ElementAttributes;
-
-const Header = (props?: HeaderProps) => {
+const Header = () => {
   const headerElement = document.createElement('header');
 
-  const headerClassName = cn([
-    'flex items-center justify-between gap-4 w-full',
-    props?.className || ''
-  ]);
+  const headerClassName =
+    'z-2 p-3 flex items-center justify-between gap-4 w-full bg-stone-900';
 
   Object.assign(headerElement, {
-    ...props,
     id: 'text-to-speech-header',
     className: headerClassName
   });
 
-  headerElement.appendChild(
-    Button({
-      id: 'settings-button',
-      props: {
-        innerHTML: `
-          fit content
-          <span class="sr-only">${i18n('settings-button')}</span>
-        `,
-        onclick: (e) => {
-          console.log('Settings button clicked', e);
-        }
+  const settingsButtonElement = Button({
+    id: 'settings-button',
+    props: {
+      className: 'hover:outline-none',
+      innerHTML: `<span class="sr-only">${i18n('settings-button')}</span>`,
+      onclick() {
+        handleExpandSettings();
       }
-    })
-  );
+    }
+  });
+
+  appendSvgToElement({
+    svgIcon: cogIcon,
+    elementToAppend: settingsButtonElement,
+    className: 'w-7 h-7'
+  });
+
+  headerElement.appendChild(settingsButtonElement);
 
   const headerElementTitle = document.createElement('h1');
 
   Object.assign(headerElementTitle, {
-    className: 'align-self-center text-l text-center font-bold',
+    className: 'align-self-center text-l text-center font-extrabold italic',
     innerHTML: i18n('title')
   });
 

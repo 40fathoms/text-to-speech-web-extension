@@ -1,1 +1,10 @@
 @import 'tailwindcss';
+
+#settings-button[aria-expanded='true'] {
+  transform: rotate(-90deg);
+}
+
+#settings-content.active {
+  transform: translateY(0);
+  visibility: visible;
+}

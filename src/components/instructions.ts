@@ -1,28 +1,12 @@
 import { cn } from '../utils/cn';
 import { i18n } from '../utils/i18n';
 
-type ElementAttributes = Omit<
-  Partial<
-    HTMLElement & {
-      [key: `data-${string}`]: string;
-      [key: `aria-${string}`]: string;
-    }
-  >,
-  'innerHTML'
->;
-
-type InstructionsProps = ElementAttributes;
-
-const Instructions = (props?: InstructionsProps) => {
+const Instructions = () => {
   const instructionsElement = document.createElement('div');
 
-  const instructionsClassName = cn([
-    'flex gap-4 flex-col w-full',
-    props?.className || ''
-  ]);
+  const instructionsClassName = 'flex gap-4 flex-col w-full';
 
   Object.assign(instructionsElement, {
-    ...props,
     id: 'text-to-speech-instructions',
     className: instructionsClassName
   });
