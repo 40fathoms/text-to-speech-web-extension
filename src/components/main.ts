@@ -1,7 +1,7 @@
 import { PlayerContent } from './player-content';
 import { SettingsContent } from './settings-content';
 
-const Main = () => {
+const Main = async () => {
   const main = document.querySelector<HTMLElement>('#root')!;
 
   main.className = 'relative';

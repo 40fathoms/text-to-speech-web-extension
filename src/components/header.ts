@@ -4,7 +4,7 @@ import { i18n } from '../utils/i18n';
 import { Button } from './button';
 import { cogIcon } from './icons';
 
-const Header = () => {
+const Header = async () => {
   const headerElement = document.createElement('header');
 
   const headerClassName =
@@ -18,7 +18,7 @@ const Header = () => {
   const settingsButtonElement = Button({
     id: 'settings-button',
     props: {
-      className: 'hover:outline-none',
+      className: 'hover:outline-none transition-all duration-200',
       innerHTML: `<span class="sr-only">${i18n('settings-button')}</span>`,
       onclick() {
         handleExpandSettings();

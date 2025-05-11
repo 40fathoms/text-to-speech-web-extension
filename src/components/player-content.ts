@@ -6,7 +6,7 @@ const PlayerContent = () => {
 
   const playerContentClassName = cn([
     'flex flex-col gap-5 items-center justify-center',
-    'p-3 pt-0 w-full h-fit bg-stone-900 border-b-4 border-amber-300'
+    'p-3 pt-1 w-full h-fit bg-stone-900 border-b-4 border-amber-300'
   ]);
 
   Object.assign(playerContent, {

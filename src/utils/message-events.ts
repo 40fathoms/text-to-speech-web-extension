@@ -28,8 +28,8 @@ const handleMessageListener = (
 const handleSendRuntimeMessage = async (message: MessageInput) => {
   try {
     await chrome.runtime.sendMessage(message);
-  } catch (e) {
-    console.error('Error sending runtime message:', e);
+  } catch {
+    return;
   }
 };
 
@@ -51,8 +51,8 @@ const handleSendTabsMessage = (
 
       chrome.tabs.sendMessage(tabId, message, callback);
     });
-  } catch (e) {
-    console.error('Error sending tabs message:', e);
+  } catch {
+    return;
   }
 };
 
