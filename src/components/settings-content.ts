@@ -1,7 +1,9 @@
+import type { UserSpecs } from '../background';
 import { cn } from '../utils/cn';
+import { Form } from './form';
 import { Instructions } from './instructions';
 
-const SettingsContent = () => {
+const SettingsContent = (userSpecs: UserSpecs) => {
   const settingsContent = document.createElement('div');
 
   const settingsContentClassName = cn([
@@ -15,9 +17,10 @@ const SettingsContent = () => {
     className: settingsContentClassName
   });
 
+  const formElement = Form(userSpecs);
   const instructionsElement = Instructions();
 
-  settingsContent.appendChild(instructionsElement);
+  settingsContent.append(formElement, instructionsElement);
 
   return settingsContent;
 };

@@ -25,3 +25,5 @@ handleGetLocalStorage().then((res) => {
     handleSetLocalStorage(JSON.stringify(newUserSpecs));
   }
 });
+
+export type { UserSpecs };

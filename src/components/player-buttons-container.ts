@@ -58,9 +58,11 @@ const PlayerButtonsContainer = () => {
     className: 'w-full h-full'
   });
 
-  playerButtonsContainerElement.appendChild(playButtonElement);
-  playerButtonsContainerElement.appendChild(pauseButtonElement);
-  playerButtonsContainerElement.appendChild(stopButtonElement);
+  playerButtonsContainerElement.append(
+    playButtonElement,
+    pauseButtonElement,
+    stopButtonElement
+  );
 
   return playerButtonsContainerElement;
 };

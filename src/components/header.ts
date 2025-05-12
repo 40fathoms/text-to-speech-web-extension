@@ -32,8 +32,6 @@ const Header = async () => {
     className: 'w-7 h-7'
   });
 
-  headerElement.appendChild(settingsButtonElement);
-
   const headerElementTitle = document.createElement('h1');
 
   Object.assign(headerElementTitle, {
@@ -41,7 +39,7 @@ const Header = async () => {
     innerHTML: i18n('title')
   });
 
-  headerElement.appendChild(headerElementTitle);
+  headerElement.append(settingsButtonElement, headerElementTitle);
 
   return headerElement;
 };

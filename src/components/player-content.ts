@@ -15,7 +15,7 @@ const PlayerContent = () => {
 
   const textToSpeechContainerElement = PlayerButtonsContainer();
 
-  playerContent.appendChild(textToSpeechContainerElement);
+  playerContent.append(textToSpeechContainerElement);
 
   return playerContent;
 };

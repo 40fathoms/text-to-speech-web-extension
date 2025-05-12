@@ -42,10 +42,12 @@ const Instructions = () => {
     innerHTML: i18n('instructions-element-step-3')
   });
 
-  instructionsElement.appendChild(instructionsElementIntro);
-  instructionsElement.appendChild(instructionsElementFirstInstruction);
-  instructionsElement.appendChild(instructionsElementSecondInstruction);
-  instructionsElement.appendChild(instructionsElementThirdInstruction);
+  instructionsElement.append(
+    instructionsElementIntro,
+    instructionsElementFirstInstruction,
+    instructionsElementSecondInstruction,
+    instructionsElementThirdInstruction
+  );
 
   return instructionsElement;
 };
