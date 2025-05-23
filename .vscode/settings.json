@@ -1,0 +1,8 @@
+{
+  "symbols.files.associations": {
+    "vite.background.config.ts": "vite",
+    "vite.content.config.ts": "vite",
+    "vite.main.config.ts": "vite"
+  },
+  "workbench.iconTheme": "symbols"
+}
