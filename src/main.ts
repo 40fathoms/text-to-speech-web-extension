@@ -5,8 +5,7 @@ import {
   handleSendTabsMessage
 } from './utils/message-events';
 
-// generate initial html
-generateHtml().then(() => {
+const initHtmlListeners = () => {
   const playButton = document.querySelector<HTMLButtonElement>('#play-button')!;
   const pauseButton =
     document.querySelector<HTMLButtonElement>('#pause-button')!;
@@ -76,4 +75,9 @@ generateHtml().then(() => {
       }
     }
   );
+};
+
+// generate initial html
+generateHtml().then(() => {
+  initHtmlListeners();
 });

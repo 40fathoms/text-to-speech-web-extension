@@ -19,7 +19,7 @@ type SelectProps<T> = {
   label: string;
   options: T[];
   value: T;
-  onChange: (value: T) => void;
+  onChange?: (value: T) => void;
   labelProps?: LabelElementAttributes;
   selectProps?: SelectElementAttributes;
 };
@@ -40,11 +40,13 @@ const Select = <T extends string>({
     id,
     name: id,
     className: 'border rounded p-1',
-    onchange: (e: Event) => {
-      const target = e.target as HTMLSelectElement;
-      const selectedValue = target.value;
-      onChange(selectedValue as T);
-    }
+    ...(!!onChange && {
+      onchange: (e: Event) => {
+        const target = e.target as HTMLSelectElement;
+        const selectedValue = target.value;
+        onChange(selectedValue as T);
+      }
+    })
   });
 
   options.forEach((opt) => {

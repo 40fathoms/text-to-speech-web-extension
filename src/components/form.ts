@@ -6,6 +6,12 @@ const Form = (userSpecs: UserSpecs) => {
 
   formElement.className = 'w-full';
 
+  formElement.onsubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(formElement);
+    console.log('Form Data: ', Object.fromEntries(formData.entries()));
+  };
+
   const formFieldsetElement = FormFieldset(userSpecs);
 
   formElement.appendChild(formFieldsetElement);

@@ -21,7 +21,7 @@ type RangeProps = {
   min?: number;
   max?: number;
   step?: number;
-  onChange: (value: number) => void;
+  onChange?: (value: number) => void;
   labelProps?: LabelElementAttributes;
   rangeInputProps?: RangeInputElementAttributes;
 };
@@ -49,12 +49,14 @@ const Range = ({
     max: max.toString(),
     step: step.toString(),
     className: 'w-full text-amber-300',
-    onchange: (e: Event) => {
-      const target = e.target as HTMLInputElement;
-      const selectedValue = parseFloat(target.value);
-      labelProps.innerHTML = `<span>${label} (${selectedValue})</span>`;
-      onChange(selectedValue);
-    }
+    ...(!!onChange && {
+      onchange: (e: Event) => {
+        const target = e.target as HTMLInputElement;
+        const selectedValue = parseFloat(target.value);
+        labelProps.innerHTML = `<span>${label} (${selectedValue})</span>`;
+        onChange(selectedValue);
+      }
+    })
   });
 
   const selectLabelElement = document.createElement('label');
@@ -68,28 +70,13 @@ const Range = ({
 
   selectLabelElement.append(rangeInputElement);
 
+  rangeInputElement.addEventListener('input', () => {
+    selectLabelElement.querySelector(
+      'span'
+    )!.textContent = `${label} (${rangeInputElement.value})`;
+  });
+
   return selectLabelElement;
-
-  //   const wrapper = document.createElement('label');
-  //   wrapper.className = 'flex flex-col gap-1 w-full';
-
-  //   const range = document.createElement('input');
-  //   range.type = 'range';
-  //   range.id = id;
-  //   range.name = id;
-  //   range.value = value.toString();
-  //   range.min = min.toString();
-  //   range.max = max.toString();
-  //   range.step = step.toString();
-  //   range.className = 'w-full text-amber-300';
-
-  //   wrapper.innerHTML = `<span>${label} (${value})</span>`;
-  //   wrapper.appendChild(range);
-
-  //   // Optional: Live value update
-  //   range.addEventListener('input', () => {
-  //     wrapper.querySelector('span')!.textContent = `${label} (${range.value})`;
-  //   });
 };
 
 export { Range };
