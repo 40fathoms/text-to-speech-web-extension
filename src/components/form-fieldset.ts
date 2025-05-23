@@ -1,66 +1,8 @@
 import type { UserSpecs } from '../background';
 import { cn } from '../utils/cn';
 import { i18n } from '../utils/i18n';
-
-const createLabeledSelect = (
-  id: string,
-  label: string,
-  options: string[],
-  selected: string
-) => {
-  const wrapper = document.createElement('label');
-  wrapper.className = 'flex flex-col gap-1 w-full';
-
-  const select = document.createElement('select');
-  select.id = id;
-  select.name = id;
-  select.className = 'border rounded p-1';
-
-  options.forEach((opt) => {
-    const option = document.createElement('option');
-    option.value = opt;
-    option.textContent = opt;
-    if (opt === selected) option.selected = true;
-    select.appendChild(option);
-  });
-
-  wrapper.innerHTML = `<span>${label}</span>`;
-  wrapper.appendChild(select);
-
-  return wrapper;
-};
-
-const createLabeledRange = (
-  id: string,
-  label: string,
-  value: number,
-  min = 0,
-  max = 1,
-  step = 0.1
-) => {
-  const wrapper = document.createElement('label');
-  wrapper.className = 'flex flex-col gap-1 w-full';
-
-  const range = document.createElement('input');
-  range.type = 'range';
-  range.id = id;
-  range.name = id;
-  range.value = value.toString();
-  range.min = min.toString();
-  range.max = max.toString();
-  range.step = step.toString();
-  range.className = 'w-full text-amber-300';
-
-  wrapper.innerHTML = `<span>${label} (${value})</span>`;
-  wrapper.appendChild(range);
-
-  // Optional: Live value update
-  range.addEventListener('input', () => {
-    wrapper.querySelector('span')!.textContent = `${label} (${range.value})`;
-  });
-
-  return wrapper;
-};
+import { Range } from './range';
+import { Select } from './select';
 
 const FormFieldset = (userSpecs: UserSpecs) => {
   const formFieldsetElement = document.createElement('fieldset');
@@ -74,39 +16,55 @@ const FormFieldset = (userSpecs: UserSpecs) => {
     innerHTML: `<legend class="sr-only">${i18n('form-fieldset')}</legend>`
   });
 
-  const voiceLangSelect = createLabeledSelect(
-    'lang',
-    i18n('voice-language-label'),
-    ['pt-BR', 'en-US'],
-    userSpecs.lang
-  );
+  const voiceLangSelect = Select({
+    id: 'voiceLang',
+    label: i18n('voice-language-label'),
+    options: ['pt-BR', 'en-US'],
+    value: userSpecs.lang,
+    onChange: (value) => {
+      console.log('value: ', value);
+    }
+  });
 
-  const volumeSlider = createLabeledRange(
-    'volume',
-    i18n('volume-label'),
-    userSpecs.volume
-  );
-  const rateSlider = createLabeledRange(
-    'rate',
-    i18n('rate-label'),
-    userSpecs.rate
-  );
+  const volumeSlider = Range({
+    id: 'volume',
+    label: i18n('volume-label'),
+    value: userSpecs.volume,
+    onChange: (value) => {
+      console.log('value: ', value);
+    }
+  });
 
-  const pitchSlider = createLabeledRange(
-    'pitch',
-    i18n('pitch-label'),
-    userSpecs.pitch
-  );
+  const rateSlider = Range({
+    id: 'rate',
+    label: i18n('rate-label'),
+    value: userSpecs.rate,
+    onChange: (value) => {
+      console.log('value: ', value);
+    }
+  });
+
+  const pitchSlider = Range({
+    id: 'pitch',
+    label: i18n('pitch-label'),
+    value: userSpecs.pitch,
+    onChange: (value) => {
+      console.log('value: ', value);
+    }
+  });
 
   const dividerElement = document.createElement('hr');
   dividerElement.className = 'w-full border-t-2 border-amber-300 my-4';
 
-  const systemLangSelect = createLabeledSelect(
-    'systemLanguage',
-    i18n('system-language-label'),
-    ['pt-BR', 'en-US'],
-    userSpecs.systemLanguage
-  );
+  const systemLangSelect = Select({
+    id: 'systemLanguage',
+    label: i18n('system-language-label'),
+    options: ['pt-BR', 'en-US'],
+    value: userSpecs.systemLanguage,
+    onChange: (value) => {
+      console.log('value: ', value);
+    }
+  });
 
   formFieldsetElement.append(
     voiceLangSelect,
