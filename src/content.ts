@@ -4,7 +4,10 @@ import {
   handleGetLocalStorage,
   handleSetLocalStorage
 } from './utils/local-storage';
-import { handleMessageListener } from './utils/message-events';
+import {
+  handleMessageListener,
+  handleSendRuntimeMessage
+} from './utils/message-events';
 import { getFocusedElementText, getSelectedText } from './utils/text-selection';
 
 handleGetLocalStorage().then((userSpecs) => {
@@ -113,8 +116,12 @@ handleGetLocalStorage().then((userSpecs) => {
 
       if (message.type === 'SUBMIT_SETTINGS_FORM') {
         handleFormSubmission({ textToSpeech, message }).then(
-          (updatedUserSpecs) => {
-            handleSetLocalStorage(JSON.stringify(updatedUserSpecs));
+          async (updatedUserSpecs) => {
+            await handleSetLocalStorage(JSON.stringify(updatedUserSpecs));
+
+            handleSendRuntimeMessage({
+              type: 'CLOSE_POPUP'
+            });
           }
         );
       }

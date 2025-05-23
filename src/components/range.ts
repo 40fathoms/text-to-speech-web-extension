@@ -39,7 +39,6 @@ const Range = ({
 }: RangeProps) => {
   const rangeInputElement = document.createElement('input');
 
-  console.log('value: ', value);
   Object.assign(rangeInputElement, {
     ...rangeInputProps,
     type: 'range',

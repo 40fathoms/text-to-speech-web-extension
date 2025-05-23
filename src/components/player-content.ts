@@ -1,7 +1,8 @@
 import { cn } from '../utils/cn';
+import type { UserSpecs } from '../utils/local-storage';
 import { PlayerButtonsContainer } from './player-buttons-container';
 
-const PlayerContent = () => {
+const PlayerContent = (userSpecs: UserSpecs) => {
   const playerContent = document.createElement('div');
 
   const playerContentClassName = cn([
@@ -13,7 +14,7 @@ const PlayerContent = () => {
     className: playerContentClassName
   });
 
-  const textToSpeechContainerElement = PlayerButtonsContainer();
+  const textToSpeechContainerElement = PlayerButtonsContainer(userSpecs);
 
   playerContent.append(textToSpeechContainerElement);
 

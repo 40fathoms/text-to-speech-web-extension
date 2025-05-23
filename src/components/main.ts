@@ -12,7 +12,7 @@ const Main = async (userSpecs: UserSpecs) => {
     className: mainElementClassName
   });
 
-  const playerContent = PlayerContent();
+  const playerContent = PlayerContent(userSpecs);
   const settingsContent = SettingsContent(userSpecs);
 
   mainElement.append(playerContent, settingsContent);

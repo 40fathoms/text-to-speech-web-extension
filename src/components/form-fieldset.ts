@@ -6,6 +6,8 @@ import { Range } from './range';
 import { Select } from './select';
 
 const FormFieldset = (userSpecs: UserSpecs) => {
+  const systemLanguage = userSpecs.systemLang;
+
   const formFieldsetElement = document.createElement('fieldset');
 
   const formFieldsetClassName = cn([
@@ -14,45 +16,48 @@ const FormFieldset = (userSpecs: UserSpecs) => {
 
   Object.assign(formFieldsetElement, {
     className: formFieldsetClassName,
-    innerHTML: `<legend class="sr-only">${i18n('form-fieldset')}</legend>`
+    innerHTML: `<legend class="sr-only">${i18n(
+      'form-fieldset',
+      systemLanguage
+    )}</legend>`
   });
 
   const voiceLangSelect = Select({
     id: 'lang',
-    label: i18n('voice-language-label'),
+    label: i18n('voice-language-label', systemLanguage),
     options: ['pt-BR', 'en-US'],
     value: userSpecs.lang
   });
 
   const volumeSlider = Range({
     id: 'volume',
-    label: i18n('volume-label'),
+    label: i18n('volume-label', systemLanguage),
     value: userSpecs.volume
   });
 
   const rateSlider = Range({
     id: 'rate',
-    label: i18n('rate-label'),
+    label: i18n('rate-label', systemLanguage),
     value: userSpecs.rate
   });
 
   const pitchSlider = Range({
     id: 'pitch',
-    label: i18n('pitch-label'),
+    label: i18n('pitch-label', systemLanguage),
     value: userSpecs.pitch
   });
 
   const systemLangSelect = Select({
     id: 'systemLang',
-    label: i18n('system-language-label'),
+    label: i18n('system-language-label', systemLanguage),
     options: ['pt-BR', 'en-US'],
-    value: userSpecs.systemLang
+    value: systemLanguage
   });
 
   const submitButtonElement = Button({
     id: 'submit-form-button',
     props: {
-      innerHTML: `<span>${i18n('submit-form-button')}</span>`,
+      innerHTML: `<span>${i18n('submit-form-button', systemLanguage)}</span>`,
       className: 'w-full text-amber-300 my-3 py-2',
       type: 'submit'
     }

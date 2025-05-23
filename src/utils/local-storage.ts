@@ -1,7 +1,11 @@
 import type TextToSpeech from '../classes/text-to-speech';
+import translations from '../translations.json';
+
+type Translations = typeof translations;
+type Language = keyof Translations;
 
 type UserSpecs = Omit<TextToSpeech['settings'], 'voice'> & {
-  systemLang: string;
+  systemLang: Language;
 };
 
 const key = import.meta.env.VITE_LOCAL_STORAGE_KEY;

@@ -8,7 +8,7 @@ const SettingsContent = (userSpecs: UserSpecs) => {
 
   const settingsContentClassName = cn([
     'absolute z-1 top-0 left-0 flex flex-col gap-5 items-center',
-    'p-3 h-100 w-full bg-stone-900 border-b-4 border-amber-300 overflow-auto',
+    'p-3 h-80 w-full bg-stone-900 border-b-4 border-amber-300 overflow-auto',
     'transform-[translateY(-100%)] transition-all duration-250 invisible'
   ]);
 
@@ -18,7 +18,7 @@ const SettingsContent = (userSpecs: UserSpecs) => {
   });
 
   const formElement = Form(userSpecs);
-  const instructionsElement = Instructions();
+  const instructionsElement = Instructions(userSpecs);
 
   settingsContent.append(formElement, instructionsElement);
 

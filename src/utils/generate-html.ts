@@ -7,7 +7,7 @@ const defaultUserSpecs = {
   volume: 1,
   rate: 1,
   pitch: 1,
-  systemLang: 'pt-BR'
+  systemLang: 'pt-BR' as const
 };
 
 /**
@@ -21,7 +21,7 @@ const generateHtml = async () => {
   const userSpecs = (await handleGetLocalStorage()) || defaultUserSpecs;
 
   const [headerElement, mainElement] = await Promise.all([
-    Header(),
+    Header(userSpecs!),
     Main(userSpecs!)
   ]);
 

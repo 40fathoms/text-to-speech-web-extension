@@ -42,6 +42,10 @@ const startHtmlListeners = () => {
       pauseButton.disabled = true;
       stopButton.disabled = true;
     }
+
+    if (message.type === 'CLOSE_POPUP') {
+      window.close();
+    }
   });
 
   // run when the popup is opened

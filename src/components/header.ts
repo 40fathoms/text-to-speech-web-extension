@@ -1,10 +1,13 @@
 import { appendSvgToElement } from '../utils/append-svg';
 import { handleExpandSettings } from '../utils/expand-settings';
 import { i18n } from '../utils/i18n';
+import type { UserSpecs } from '../utils/local-storage';
 import { Button } from './button';
 import { cogIcon } from './icons';
 
-const Header = async () => {
+const Header = async (userSpecs: UserSpecs) => {
+  const systemLanguage = userSpecs.systemLang;
+
   const headerElement = document.createElement('header');
 
   const headerClassName =
@@ -19,7 +22,10 @@ const Header = async () => {
     id: 'settings-button',
     props: {
       className: 'hover:outline-none transition-all duration-200',
-      innerHTML: `<span class="sr-only">${i18n('settings-button')}</span>`,
+      innerHTML: `<span class="sr-only">${i18n(
+        'settings-button',
+        systemLanguage
+      )}</span>`,
       onclick() {
         handleExpandSettings();
       }
@@ -36,7 +42,7 @@ const Header = async () => {
 
   Object.assign(headerElementTitle, {
     className: 'align-self-center text-l text-center font-extrabold italic',
-    innerHTML: i18n('title')
+    innerHTML: i18n('title', systemLanguage)
   });
 
   headerElement.append(settingsButtonElement, headerElementTitle);
