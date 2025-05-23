@@ -39,15 +39,16 @@ const Range = ({
 }: RangeProps) => {
   const rangeInputElement = document.createElement('input');
 
+  console.log('value: ', value);
   Object.assign(rangeInputElement, {
     ...rangeInputProps,
     type: 'range',
     id,
     name: id,
-    value: value.toString(),
     min: min.toString(),
     max: max.toString(),
     step: step.toString(),
+    value: value.toString(), // important: value must be set after min, max and step
     className: 'w-full text-amber-300',
     ...(!!onChange && {
       onchange: (e: Event) => {

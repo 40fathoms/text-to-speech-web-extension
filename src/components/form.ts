@@ -1,4 +1,5 @@
-import type { UserSpecs } from '../background';
+import type { UserSpecs } from '../utils/local-storage';
+import { handleSendTabsMessage } from '../utils/message-events';
 import { FormFieldset } from './form-fieldset';
 
 const Form = (userSpecs: UserSpecs) => {
@@ -9,7 +10,12 @@ const Form = (userSpecs: UserSpecs) => {
   formElement.onsubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(formElement);
-    console.log('Form Data: ', Object.fromEntries(formData.entries()));
+    const formEntries = Object.fromEntries(formData.entries());
+
+    handleSendTabsMessage({
+      type: 'SUBMIT_SETTINGS_FORM',
+      formEntries
+    });
   };
 
   const formFieldsetElement = FormFieldset(userSpecs);

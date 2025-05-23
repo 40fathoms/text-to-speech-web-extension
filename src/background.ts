@@ -1,14 +1,8 @@
-import type TextToSpeech from './classes/text-to-speech';
 import {
   handleGetLocalStorage,
-  handleSetLocalStorage
+  handleSetLocalStorage,
+  type UserSpecs
 } from './utils/local-storage';
-
-type UserSpecs = Omit<TextToSpeech['settings'], 'voice'> & {
-  systemLanguage: string;
-  shouldPlayOnFocus: boolean;
-  shouldPlayOnSelection: boolean;
-};
 
 handleGetLocalStorage().then((res) => {
   if (!res) {
@@ -17,13 +11,9 @@ handleGetLocalStorage().then((res) => {
       volume: 1,
       rate: 1,
       pitch: 1,
-      systemLanguage: 'pt-BR',
-      shouldPlayOnFocus: true,
-      shouldPlayOnSelection: true
+      systemLang: 'pt-BR'
     };
 
     handleSetLocalStorage(JSON.stringify(newUserSpecs));
   }
 });
-
-export type { UserSpecs };

@@ -1,6 +1,14 @@
 import { Header } from '../components/header';
 import { Main } from '../components/main';
-// import { handleGetLocalStorage } from './local-storage';
+import { handleGetLocalStorage } from './local-storage';
+
+const defaultUserSpecs = {
+  lang: 'pt-BR',
+  volume: 1,
+  rate: 1,
+  pitch: 1,
+  systemLang: 'pt-BR'
+};
 
 /**
  * Asynchronously generates and appends an HTML structure to the document body.
@@ -10,17 +18,7 @@ import { Main } from '../components/main';
  * @returns {Promise<void>} A promise that resolves when the HTML generation is complete.
  */
 const generateHtml = async () => {
-  // const userSpecs = await handleGetLocalStorage();
-
-  const userSpecs = {
-    lang: 'pt-BR',
-    volume: 1,
-    rate: 1,
-    pitch: 1,
-    systemLanguage: 'pt-BR',
-    shouldPlayOnFocus: true,
-    shouldPlayOnSelection: true
-  };
+  const userSpecs = (await handleGetLocalStorage()) || defaultUserSpecs;
 
   const [headerElement, mainElement] = await Promise.all([
     Header(),

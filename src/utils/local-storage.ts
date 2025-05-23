@@ -1,9 +1,7 @@
 import type TextToSpeech from '../classes/text-to-speech';
 
 type UserSpecs = Omit<TextToSpeech['settings'], 'voice'> & {
-  systemLanguage: string;
-  shouldPlayOnFocus: boolean;
-  shouldPlayOnSelection: boolean;
+  systemLang: string;
 };
 
 const key = import.meta.env.VITE_LOCAL_STORAGE_KEY;
@@ -26,4 +24,5 @@ const handleSetLocalStorage = async (value: string) => {
   }
 };
 
+export type { UserSpecs };
 export { handleGetLocalStorage, handleSetLocalStorage };

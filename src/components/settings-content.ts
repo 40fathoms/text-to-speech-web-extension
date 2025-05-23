@@ -1,5 +1,5 @@
-import type { UserSpecs } from '../background';
 import { cn } from '../utils/cn';
+import type { UserSpecs } from '../utils/local-storage';
 import { Form } from './form';
 import { Instructions } from './instructions';
 

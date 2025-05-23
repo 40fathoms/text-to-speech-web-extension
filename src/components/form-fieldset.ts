@@ -1,6 +1,6 @@
-import type { UserSpecs } from '../background';
 import { cn } from '../utils/cn';
 import { i18n } from '../utils/i18n';
+import type { UserSpecs } from '../utils/local-storage';
 import { Button } from './button';
 import { Range } from './range';
 import { Select } from './select';
@@ -18,7 +18,7 @@ const FormFieldset = (userSpecs: UserSpecs) => {
   });
 
   const voiceLangSelect = Select({
-    id: 'voiceLang',
+    id: 'lang',
     label: i18n('voice-language-label'),
     options: ['pt-BR', 'en-US'],
     value: userSpecs.lang
@@ -42,14 +42,11 @@ const FormFieldset = (userSpecs: UserSpecs) => {
     value: userSpecs.pitch
   });
 
-  const dividerElement = document.createElement('hr');
-  dividerElement.className = 'w-full border-t-2 border-amber-300 my-4';
-
   const systemLangSelect = Select({
-    id: 'systemLanguage',
+    id: 'systemLang',
     label: i18n('system-language-label'),
     options: ['pt-BR', 'en-US'],
-    value: userSpecs.systemLanguage
+    value: userSpecs.systemLang
   });
 
   const submitButtonElement = Button({
@@ -60,6 +57,9 @@ const FormFieldset = (userSpecs: UserSpecs) => {
       type: 'submit'
     }
   });
+
+  const dividerElement = document.createElement('hr');
+  dividerElement.className = 'w-full border-t-2 border-amber-300 my-4';
 
   formFieldsetElement.append(
     voiceLangSelect,

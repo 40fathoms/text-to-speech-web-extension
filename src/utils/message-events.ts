@@ -1,4 +1,4 @@
-type MessageInput = { type: string } & { [x: string]: string };
+type MessageInput = { type: string } & { [x: string]: unknown };
 
 /**
  * Sets up a listener for incoming messages from `chrome.runtime`.

@@ -1,18 +1,23 @@
-import type { UserSpecs } from '../background';
+import type { UserSpecs } from '../utils/local-storage';
 import { PlayerContent } from './player-content';
 import { SettingsContent } from './settings-content';
 
 const Main = async (userSpecs: UserSpecs) => {
-  const main = document.querySelector<HTMLElement>('#root')!;
+  const mainElement = document.querySelector<HTMLElement>('#root')!;
 
-  main.className = 'relative';
+  const mainElementClassName = 'relative';
+
+  Object.assign(mainElement, {
+    id: 'text-to-speech-main',
+    className: mainElementClassName
+  });
 
   const playerContent = PlayerContent();
   const settingsContent = SettingsContent(userSpecs);
 
-  main.append(playerContent, settingsContent);
+  mainElement.append(playerContent, settingsContent);
 
-  return main;
+  return mainElement;
 };
 
 export { Main };

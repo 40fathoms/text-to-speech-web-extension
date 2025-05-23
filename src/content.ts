@@ -1,5 +1,9 @@
 import TextToSpeech from './classes/text-to-speech';
-import { handleGetLocalStorage } from './utils/local-storage';
+import { handleFormSubmission } from './utils/handle-form-submission';
+import {
+  handleGetLocalStorage,
+  handleSetLocalStorage
+} from './utils/local-storage';
 import { handleMessageListener } from './utils/message-events';
 import { getFocusedElementText, getSelectedText } from './utils/text-selection';
 
@@ -105,6 +109,14 @@ handleGetLocalStorage().then((userSpecs) => {
       if (message.type === 'GET_TEXT_TO_SPEECH_INSTANCE') {
         const selectedText = await getSelectedText();
         sendResponse({ selectedText, textToSpeech });
+      }
+
+      if (message.type === 'SUBMIT_SETTINGS_FORM') {
+        handleFormSubmission({ textToSpeech, message }).then(
+          (updatedUserSpecs) => {
+            handleSetLocalStorage(JSON.stringify(updatedUserSpecs));
+          }
+        );
       }
     });
 
