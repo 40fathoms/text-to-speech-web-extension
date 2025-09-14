@@ -22,10 +22,10 @@ class TextToSpeech {
   /**
    * Constructs a new TextToSpeech instance with default or provided settings.
    *
-   * @param settings - Optional initial settings for speech synthesis.
+   * @param {Partial<TextToSpeechSettings>} settings - Optional initial settings for speech synthesis.
    * @throws Will throw an error if the Web Speech API is not supported.
    */
-  constructor(settings = {}) {
+  constructor(settings: Partial<TextToSpeechSettings> = {}) {
     this.settings = {
       volume: 1,
       rate: 1,

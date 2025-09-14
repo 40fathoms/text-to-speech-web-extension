@@ -34,6 +34,8 @@ handleGetLocalStorage().then((userSpecs) => {
             textToSpeech.speak(focusedElement);
           }
         }, 10);
+
+        return;
       }
 
       if (event.altKey && event.key === 'a') {
@@ -42,46 +44,23 @@ handleGetLocalStorage().then((userSpecs) => {
         if (selectedText) {
           textToSpeech.speak(selectedText);
         }
+
+        return;
       }
 
       if (event.altKey && event.key === 'r') {
         textToSpeech.resume();
+        return;
       }
 
       if (event.altKey && event.key === 'p') {
         textToSpeech.pause();
+        return;
       }
 
       if (event.altKey && event.key === 's') {
         textToSpeech.stop();
-      }
-
-      if (event.altKey && event.key === 't') {
-        console.log('textToSpeech: ', textToSpeech);
-      }
-
-      if (event.altKey && event.key === 'y') {
-        textToSpeech.configure({
-          lang: 'pt-BR'
-        });
-      }
-
-      if (event.altKey && event.key === 'h') {
-        textToSpeech.configure({
-          lang: 'en-US'
-        });
-      }
-
-      if (event.altKey && event.key === 'u') {
-        textToSpeech.configure({
-          volume: 0.5
-        });
-      }
-
-      if (event.altKey && event.key === 'j') {
-        textToSpeech.configure({
-          volume: 1
-        });
+        return;
       }
     });
 
@@ -99,19 +78,24 @@ handleGetLocalStorage().then((userSpecs) => {
           textToSpeech.speak(selectedText);
           return;
         }
+
+        return;
       }
 
       if (message.type === 'PAUSE') {
         textToSpeech.pause();
+        return;
       }
 
       if (message.type === 'STOP') {
         textToSpeech.stop();
+        return;
       }
 
       if (message.type === 'GET_TEXT_TO_SPEECH_INSTANCE') {
         const selectedText = await getSelectedText();
         sendResponse({ selectedText, textToSpeech });
+        return;
       }
 
       if (message.type === 'SUBMIT_SETTINGS_FORM') {
@@ -124,6 +108,8 @@ handleGetLocalStorage().then((userSpecs) => {
             });
           }
         );
+
+        return;
       }
     });
 

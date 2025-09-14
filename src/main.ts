@@ -1,9 +1,12 @@
 import type TextToSpeech from './classes/text-to-speech';
 import { generateHtml } from './utils/generate-html';
+import { getRuntimeAPI } from './utils/get-browser-methods';
 import {
   handleMessageListener,
   handleSendTabsMessage
 } from './utils/message-events';
+
+const runtime = getRuntimeAPI();
 
 const startHtmlListeners = () => {
   const playButton = document.querySelector<HTMLButtonElement>('#play-button')!;
@@ -59,7 +62,7 @@ const startHtmlListeners = () => {
         textToSpeech: TextToSpeech;
       };
 
-      if (chrome.runtime.lastError) {
+      if (runtime.lastError) {
         return;
       }
 
